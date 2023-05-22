@@ -16,6 +16,7 @@ public class SecurityConfig{
         httpSecurity.httpBasic(httpBasic -> httpBasic.disable()).csrf(csrf -> csrf.disable()).cors(cors ->cors.disable())
                 .authorizeHttpRequests((requests) -> requests
                         .requestMatchers("/api/auth/**").permitAll()
+                        .requestMatchers("/v3/api-docs/**","/swagger-ui/**").permitAll()
                         .anyRequest().authenticated()
                 );
 
