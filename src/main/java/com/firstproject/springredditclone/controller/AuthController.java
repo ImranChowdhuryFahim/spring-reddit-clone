@@ -1,6 +1,7 @@
 package com.firstproject.springredditclone.controller;
 
 import com.firstproject.springredditclone.dto.RegisterRequest;
+import com.firstproject.springredditclone.exceptions.SpringRedditException;
 import com.firstproject.springredditclone.service.AuthService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -19,9 +20,18 @@ public class AuthController {
     @PostMapping("/signup")
     public ResponseEntity<String> signup(@RequestBody RegisterRequest registerRequest)
     {
-        authService.signup(registerRequest);
-        return new ResponseEntity<>("User Registration Successful",
-                HttpStatus.OK);
+        try
+        {
+         authService.signup(registerRequest);
+            return new ResponseEntity<>("User Registration Successful",
+                    HttpStatus.OK);
+        }catch (SpringRedditException exception)
+        {
+            return new ResponseEntity<>("User Registration Failed. Cause:"+exception.getMessage(),
+                    HttpStatus.BAD_REQUEST);
+        }
+
+
     }
 
 }
