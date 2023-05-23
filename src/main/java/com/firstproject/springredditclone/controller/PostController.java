@@ -3,6 +3,7 @@ package com.firstproject.springredditclone.controller;
 import com.firstproject.springredditclone.dto.PostRequest;
 import com.firstproject.springredditclone.dto.PostResponse;
 import com.firstproject.springredditclone.service.PostService;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,27 +22,13 @@ public class PostController {
 
     @PostMapping
     public ResponseEntity<Void> createPost(@RequestBody PostRequest postRequest) {
-
-        try {
             postService.save(postRequest);
             return new ResponseEntity<>(HttpStatus.CREATED);
-        }catch (Exception exception)
-        {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }
-
-
     }
 
     @GetMapping
     public ResponseEntity<List<PostResponse>> getAllPosts() {
-        try {
             return status(HttpStatus.OK).body(postService.getAllPosts());
-        }catch (Exception exception)
-        {
-            return status(HttpStatus.BAD_REQUEST).body(null);
-        }
-
     }
 
     @GetMapping("/{id}")

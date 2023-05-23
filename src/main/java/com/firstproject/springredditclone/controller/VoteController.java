@@ -2,6 +2,7 @@ package com.firstproject.springredditclone.controller;
 
 import com.firstproject.springredditclone.dto.VoteDto;
 import com.firstproject.springredditclone.service.VoteService;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

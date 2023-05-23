@@ -2,6 +2,7 @@ package com.firstproject.springredditclone.controller;
 
 import com.firstproject.springredditclone.dto.SubredditDto;
 import com.firstproject.springredditclone.service.SubredditService;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -11,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/subreddit")
+@RequestMapping("/api/subreddits")
 @AllArgsConstructor
 @Slf4j
 public class SubredditController {

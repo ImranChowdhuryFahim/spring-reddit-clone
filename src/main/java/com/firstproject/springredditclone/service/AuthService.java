@@ -53,12 +53,7 @@ public class AuthService {
         user.setCreated(Instant.now());
         user.setEnabled(false);
 
-        try {
-            userRepository.save(user);
-        }catch (Exception exception)
-        {
-            throw new SpringRedditException("Exception while signup",exception);
-        }
+        userRepository.save(user);
         String token = generateVerificationToken(user);
         mailService.sendMail(new NotificationEmail("Please Activate your Account",
                 user.getEmail(), "Thank you for signing up to Spring Reddit, " +

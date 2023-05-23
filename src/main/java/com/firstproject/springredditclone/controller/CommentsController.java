@@ -2,6 +2,7 @@ package com.firstproject.springredditclone.controller;
 
 import com.firstproject.springredditclone.dto.CommentsDto;
 import com.firstproject.springredditclone.service.CommentService;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

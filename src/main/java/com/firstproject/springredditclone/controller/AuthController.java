@@ -25,17 +25,9 @@ public class AuthController {
     @PostMapping("/signup")
     public ResponseEntity<String> signup(@RequestBody RegisterRequest registerRequest)
     {
-        try
-        {
          authService.signup(registerRequest);
             return new ResponseEntity<>("User Registration Successful",
                     HttpStatus.OK);
-        }catch (SpringRedditException exception)
-        {
-            return new ResponseEntity<>("User Registration Failed. Cause:"+exception.getMessage(),
-                    HttpStatus.BAD_REQUEST);
-        }
-
     }
 
     @GetMapping("accountVerification/{token}")
