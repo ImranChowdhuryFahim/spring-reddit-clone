@@ -1,5 +1,6 @@
 package com.firstproject.springredditclone.service;
 
+import com.firstproject.springredditclone.exceptions.SpringRedditException;
 import com.firstproject.springredditclone.model.User;
 import com.firstproject.springredditclone.repository.UserRepository;
 import lombok.AllArgsConstructor;
@@ -28,6 +29,8 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         User user = userOptional
                 .orElseThrow(() -> new UsernameNotFoundException("No user " +
                         "Found with username : " + username));
+
+        if(!user.isEnabled()) throw new SpringRedditException("User is not authenticated");
 
         return new org.springframework.security
                 .core.userdetails.User(user.getUsername(), user.getPassword(),

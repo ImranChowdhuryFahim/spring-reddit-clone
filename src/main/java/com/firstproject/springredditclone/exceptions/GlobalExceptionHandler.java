@@ -27,7 +27,7 @@ public class GlobalExceptionHandler {
         apiResponse.setMessage(postNotFoundException.getMessage());
         apiResponse.setSuccess(false);
 
-        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(apiResponse);
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(apiResponse);
     }
 
     @ExceptionHandler(SubredditNotFoundException.class)
@@ -37,7 +37,7 @@ public class GlobalExceptionHandler {
         apiResponse.setMessage(subredditNotFoundException.getMessage());
         apiResponse.setSuccess(false);
 
-        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(apiResponse);
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(apiResponse);
     }
 
 
