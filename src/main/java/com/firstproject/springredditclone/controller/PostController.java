@@ -4,6 +4,7 @@ import com.firstproject.springredditclone.dto.PostRequest;
 import com.firstproject.springredditclone.dto.PostResponse;
 import com.firstproject.springredditclone.service.PostService;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,6 +17,8 @@ import static org.springframework.http.ResponseEntity.status;
 @RestController
 @RequestMapping("/api/posts")
 @AllArgsConstructor
+@Tag(name="Post")
+@SecurityRequirement(name="jwt-auth")
 public class PostController {
 
     private final PostService postService;

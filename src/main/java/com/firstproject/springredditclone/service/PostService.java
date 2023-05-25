@@ -37,7 +37,7 @@ public class PostService {
     public void save(PostRequest postRequest) {
 
             Subreddit subreddit = subredditRepository.findByName(postRequest.getSubredditName())
-                    .orElseThrow(() -> new SpringRedditException((postRequest.getSubredditName())));
+                    .orElseThrow(() -> new SpringRedditException("No Subreddit found as: "+(postRequest.getSubredditName())));
             postRepository.save(postMapper.map(postRequest, subreddit, authService.getCurrentUser()));
 
     }
@@ -45,7 +45,7 @@ public class PostService {
     @Transactional(readOnly = true)
     public PostResponse getPost(Long id) {
         Post post = postRepository.findById(id)
-                .orElseThrow(() -> new PostNotFoundException(id.toString()));
+                .orElseThrow(() -> new PostNotFoundException("No Post found as: "+id.toString()));
         return postMapper.mapToDto(post);
     }
 
@@ -60,7 +60,7 @@ public class PostService {
     @Transactional(readOnly = true)
     public List<PostResponse> getPostsBySubreddit(Long subredditId) {
         Subreddit subreddit = subredditRepository.findById(subredditId)
-                .orElseThrow(() -> new SubredditNotFoundException(subredditId.toString()));
+                .orElseThrow(() -> new SubredditNotFoundException("No Subreddit found as: "+subredditId.toString()));
         List<Post> posts = postRepository.findAllBySubreddit(subreddit);
         return posts.stream().map(postMapper::mapToDto).collect(toList());
     }
@@ -68,7 +68,7 @@ public class PostService {
     @Transactional(readOnly = true)
     public List<PostResponse> getPostsByUsername(String username) {
         User user = userRepository.findByUsername(username)
-                .orElseThrow(() -> new UsernameNotFoundException(username));
+                .orElseThrow(() -> new UsernameNotFoundException("No User found as: "+username));
         return postRepository.findByUser(user)
                 .stream()
                 .map(postMapper::mapToDto)

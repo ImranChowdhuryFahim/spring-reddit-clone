@@ -17,6 +17,9 @@ import static jakarta.persistence.GenerationType.IDENTITY;
 @NoArgsConstructor
 @Entity
 @Builder
+@Table(
+        uniqueConstraints = {@UniqueConstraint(columnNames = {"name"})}
+)
 public class Subreddit {
     @Id
     @GeneratedValue(strategy = IDENTITY)

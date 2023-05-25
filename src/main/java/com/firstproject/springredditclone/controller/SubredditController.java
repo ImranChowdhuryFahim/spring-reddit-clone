@@ -3,6 +3,7 @@ package com.firstproject.springredditclone.controller;
 import com.firstproject.springredditclone.dto.SubredditDto;
 import com.firstproject.springredditclone.service.SubredditService;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -15,6 +16,8 @@ import java.util.List;
 @RequestMapping("/api/subreddits")
 @AllArgsConstructor
 @Slf4j
+@Tag(name="Subreddit")
+@SecurityRequirement(name="jwt-auth")
 public class SubredditController {
     public final SubredditService subredditService;
 

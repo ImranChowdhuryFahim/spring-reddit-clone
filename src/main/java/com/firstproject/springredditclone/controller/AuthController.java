@@ -7,6 +7,7 @@ import com.firstproject.springredditclone.dto.RegisterRequest;
 import com.firstproject.springredditclone.exceptions.SpringRedditException;
 import com.firstproject.springredditclone.service.AuthService;
 import com.firstproject.springredditclone.service.RefreshTokenService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/auth")
 @AllArgsConstructor
 @Slf4j
+@Tag(name="Auth")
 public class AuthController {
     private final AuthService authService;
     private final RefreshTokenService refreshTokenService;

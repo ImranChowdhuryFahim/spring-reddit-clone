@@ -3,6 +3,8 @@ package com.firstproject.springredditclone.controller;
 import com.firstproject.springredditclone.dto.CommentsDto;
 import com.firstproject.springredditclone.service.CommentService;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import io.swagger.v3.oas.annotations.tags.Tags;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,6 +17,8 @@ import static org.springframework.http.HttpStatus.OK;
 @RestController
 @RequestMapping("/api/comments")
 @AllArgsConstructor
+@Tag(name="Comment")
+@SecurityRequirement(name="jwt-auth")
 public class CommentsController {
     private final CommentService commentService;
 
