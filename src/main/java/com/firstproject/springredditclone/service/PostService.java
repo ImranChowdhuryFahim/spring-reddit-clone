@@ -18,6 +18,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static java.util.stream.Collectors.toList;
@@ -38,7 +39,13 @@ public class PostService {
 
             Subreddit subreddit = subredditRepository.findByName(postRequest.getSubredditName())
                     .orElseThrow(() -> new SpringRedditException("No Subreddit found as: "+(postRequest.getSubredditName())));
-            postRepository.save(postMapper.map(postRequest, subreddit, authService.getCurrentUser()));
+           Post save = postRepository.save(postMapper.map(postRequest, subreddit, authService.getCurrentUser()));
+
+           // add post to subreddit
+            List<Post> posts = subreddit.getPosts();
+            if(posts == null) posts = new ArrayList<>();
+            posts.add(save);
+            subredditRepository.save(subreddit);
 
     }
 
