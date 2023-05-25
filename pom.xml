@@ -92,7 +92,7 @@
 		<dependency>
 			<groupId>com.github.marlonlom</groupId>
 			<artifactId>timeago</artifactId>
-			<version>4.0.3</version>
+			<version>3.0.2</version>
 		</dependency>
 
 	</dependencies>
