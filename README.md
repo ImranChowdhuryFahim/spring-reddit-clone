@@ -5,4 +5,4 @@ Reddit clone built using Spring Boot, Spring Security with JPA Authentication, S
 # Screenshots
 1. Home Page
 
-![Swagger Documentation](https://github.com/ImranChowdhuryFahim/spring-reddit-clone.git/blob/master/src/main/resources/readme-images/swagger.png)
+![Swagger Documentation](https://github.com/ImranChowdhuryFahim/spring-reddit-clone/blob/master/src/main/resources/readme-images/swagger.png)
