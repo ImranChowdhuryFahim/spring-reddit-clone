@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import java.time.Instant;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -25,10 +26,15 @@ public class SubredditService {
     private final SubredditRepository subredditRepository;
     private final SubredditMapper subredditMapper;
 
+    private final AuthService authService;
+
     public SubredditDto save(SubredditDto subredditDto)
     {
-      Subreddit subreddit = subredditRepository.save(subredditMapper.mapDtoToSubreddit(subredditDto));
-      subredditDto.setId(subreddit.getId());
+      Subreddit subreddit = subredditMapper.mapDtoToSubreddit(subredditDto);
+      subreddit.setUser(authService.getCurrentUser());
+      subreddit.setCreatedDate(Instant.now());
+      Subreddit save  = subredditRepository.save(subreddit);
+      subredditDto.setId(save.getId());
       return subredditDto;
     }
 
