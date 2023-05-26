@@ -10,6 +10,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
@@ -46,9 +47,12 @@ public class SecurityConfig{
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
-        httpSecurity.httpBasic(httpBasic -> httpBasic.disable()).csrf(csrf -> csrf.disable()).cors(cors ->cors.disable())
+        httpSecurity.httpBasic(httpBasic -> httpBasic.disable()).cors().and()
+                .csrf().disable()
                 .authorizeHttpRequests((requests) -> requests
                         .requestMatchers("/api/auth/**").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/api/posts/**").permitAll()
+                        .requestMatchers(HttpMethod.OPTIONS, "/api/posts/**").permitAll()
                         .requestMatchers("/v3/api-docs/**","/swagger-ui/**").permitAll()
                         .anyRequest().authenticated()
                 ).oauth2ResourceServer(OAuth2ResourceServerConfigurer::jwt)
