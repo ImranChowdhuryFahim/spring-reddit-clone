@@ -37,8 +37,12 @@ public class PostService {
 
     public void save(PostRequest postRequest) {
 
+            System.out.println(postRequest.toString());
+        System.out.println(postRequest.getSubredditName());
+
             Subreddit subreddit = subredditRepository.findByName(postRequest.getSubredditName())
                     .orElseThrow(() -> new SpringRedditException("No Subreddit found as: "+(postRequest.getSubredditName())));
+        System.out.println(subreddit.toString());
            Post save = postRepository.save(postMapper.map(postRequest, subreddit, authService.getCurrentUser()));
 
            // add post to subreddit

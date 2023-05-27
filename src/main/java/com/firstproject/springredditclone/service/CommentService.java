@@ -14,11 +14,13 @@ import com.firstproject.springredditclone.repository.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Service
 @AllArgsConstructor
+@Transactional
 public class CommentService {
     private static final String POST_URL = "";
     private final PostRepository postRepository;

@@ -17,6 +17,7 @@ import static com.firstproject.springredditclone.model.VoteType.UPVOTE;
 
 @Service
 @AllArgsConstructor
+@Transactional
 public class VoteService {
 
     private final VoteRepository voteRepository;

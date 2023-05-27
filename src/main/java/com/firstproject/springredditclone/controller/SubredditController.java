@@ -1,6 +1,8 @@
 package com.firstproject.springredditclone.controller;
 
+import com.firstproject.springredditclone.dto.PostResponse;
 import com.firstproject.springredditclone.dto.SubredditDto;
+import com.firstproject.springredditclone.model.Post;
 import com.firstproject.springredditclone.service.SubredditService;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -40,5 +42,11 @@ public class SubredditController {
     {
         return ResponseEntity.status(HttpStatus.OK)
                 .body(subredditService.getSubreddit(id));
+    }
+
+    @GetMapping("{id}/posts")
+    public ResponseEntity<List<PostResponse>> getAllSubredditPosts(@PathVariable Long id)
+    {
+        return ResponseEntity.status(HttpStatus.OK).body(subredditService.getSubredditPosts(id));
     }
 }

@@ -52,7 +52,8 @@ public class SecurityConfig{
                 .authorizeHttpRequests((requests) -> requests
                         .requestMatchers("/api/auth/**").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/posts/**").permitAll()
-                        .requestMatchers(HttpMethod.OPTIONS, "/api/posts/**").permitAll()
+                        .requestMatchers(HttpMethod.GET,"/api/subreddits/**").permitAll()
+                        .requestMatchers(HttpMethod.GET,"/api/comments/**").permitAll()
                         .requestMatchers("/v3/api-docs/**","/swagger-ui/**").permitAll()
                         .anyRequest().authenticated()
                 ).oauth2ResourceServer(OAuth2ResourceServerConfigurer::jwt)
